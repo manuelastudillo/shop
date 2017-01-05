@@ -1,4 +1,18 @@
 Rails.application.routes.draw do
+  
+  
+
+    get 'marcas', to: 'marcas#index', as: 'marcas' 
+    post '/marcas', to: 'marcas#create'
+    get 'marcas/nuevas', to: 'marcas#new', as: 'new_marca'
+    get 'marcas/:id' , to: 'marcas#show', as: 'marca'
+    patch 'marcas/:id', to: 'marcas#update'
+    put 'marcas/:id', to: 'marcas#update'
+    delete 'marcar/:id', to: 'marcas#destroy'
+    get 'nueva_marca', to: 'marcas#new', as: 'nueva_marca'
+    get 'marcas/:id/editar', to: "marcas#edit", as: 'editar_marca'
+  
+
   resources :brands
   devise_for :users
   get 'dashboard/index'
