@@ -1,13 +1,51 @@
 class Marca < ActiveRecord::Base
-
+validates_with ValidateUnaccent, model: self
  after_create :update_slug
  before_update :assign_slug
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
  def to_param
      slug
  end
-
-
 
 
  private

@@ -2,13 +2,24 @@ Rails.application.routes.draw do
   
   
 
+
+    get 'categorias', to: 'categorias#index', as: 'categorias' 
+    post '/categorias', to: 'categorias#create'
+    get 'categorias/nuevas', to: 'categorias#new', as: 'new_categoria'
+    get 'categorias/:id' , to: 'categorias#show', as: 'categoria'
+    patch 'categorias/:id', to: 'categorias#update'
+    put 'categorias/:id', to: 'categorias#update'
+    delete 'categorias/:id', to: 'categorias#destroy'
+    get 'nueva_categoria', to: 'categorias#new', as: 'nueva_categoria'
+    get 'categorias/:id/editar', to: "categorias#edit", as: 'editar_categoria'
+
     get 'marcas', to: 'marcas#index', as: 'marcas' 
     post '/marcas', to: 'marcas#create'
     get 'marcas/nuevas', to: 'marcas#new', as: 'new_marca'
     get 'marcas/:id' , to: 'marcas#show', as: 'marca'
     patch 'marcas/:id', to: 'marcas#update'
     put 'marcas/:id', to: 'marcas#update'
-    delete 'marcar/:id', to: 'marcas#destroy'
+    delete 'marcas/:id', to: 'marcas#destroy'
     get 'nueva_marca', to: 'marcas#new', as: 'nueva_marca'
     get 'marcas/:id/editar', to: "marcas#edit", as: 'editar_marca'
   

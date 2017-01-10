@@ -5,21 +5,13 @@ class MarcasController < ApplicationController
   # GET /marcas.json
    PAGE_SIZE = 5
 
- def index
-   @page = (params[:page] || 0).to_i
+  def index
+    @page = (params[:page] || 0).to_i
+    @keywords = params[:keywords]
 
-   if params[:keywords].present?
-     @keywords = params[:keywords]
-     @marcas = Marca.where("lower(nombre) LIKE '%#{@keywords.downcase}%'").order(:nombre)
-                    .offset(PAGE_SIZE * @page).limit(PAGE_SIZE)
-     number_of_records = Marca.where("lower(nombre) LIKE '%#{@keywords.downcase}%'").count
-   else
-     @marcas = Marca.order(:nombre).offset(PAGE_SIZE * @page).limit(PAGE_SIZE)
-     number_of_records = Marca.count
-   end
-   @number_of_pages = (number_of_records % PAGE_SIZE) == 0 ? 
-                       number_of_records / PAGE_SIZE - 1 : number_of_records / PAGE_SIZE
- end
+    search = Search.new(@page, PAGE_SIZE, @keywords)
+    @marcas, @number_of_pages = search.marcas_by_name
+end
 
   # GET /marcas/1
   # GET /marcas/1.json
